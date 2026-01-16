@@ -92,7 +92,8 @@
 			markers: [],
 			listItems: new Map(),
 			activeTab: null,
-			myLocationMarker: null
+			myLocationMarker: null,
+			routeLine: null
 		};
 
 		const tabs = [
@@ -106,6 +107,23 @@
 
 		const setStatus = (message) => {
 			statusEl.textContent = message || '';
+		};
+
+		const clearRouteLine = () => {
+			if (state.routeLine) {
+				state.routeLine.remove();
+				state.routeLine = null;
+			}
+		};
+
+		const drawRouteLine = (targetLatLng) => {
+			clearRouteLine();
+			state.routeLine = L.polyline([[lat, lng], targetLatLng], {
+				color: settings.accentColor || '#d32f2f',
+				weight: 3,
+				opacity: 0.8,
+				dashArray: '6 6'
+			}).addTo(map);
 		};
 
 		const clearResults = () => {
@@ -167,6 +185,7 @@
 					if (marker) {
 						marker.openPopup();
 						map.setView(marker.getLatLng(), Math.max(map.getZoom(), zoom));
+						drawRouteLine(marker.getLatLng());
 						focusListItem(item.id);
 					}
 				});
@@ -183,7 +202,10 @@
 				}).addTo(map);
 				const popupHtml = `<div class="wpli-popup"><h4>${item.name}</h4>${item.address ? `<p>${item.address}</p>` : ''}</div>`;
 				marker.bindPopup(popupHtml);
-				marker.on('click', () => focusListItem(item.id));
+				marker.on('click', () => {
+					focusListItem(item.id);
+					drawRouteLine(marker.getLatLng());
+				});
 				return marker;
 			});
 		};
@@ -197,6 +219,7 @@
 		const loadPois = async (key) => {
 			clearResults();
 			clearMyLocation();
+			clearRouteLine();
 			setStatus('Đang tải dữ liệu...');
 
 			const params = new URLSearchParams({
@@ -231,6 +254,7 @@
 
 		const loadMyLocation = () => {
 			clearResults();
+			clearRouteLine();
 			setStatus('Đang lấy vị trí của bạn...');
 			summaryEl.textContent = '';
 			if (!navigator.geolocation) {
@@ -247,6 +271,7 @@
 						icon: createIcon(icons.my_location, settings.markerColor || '#2aa8a8')
 					}).addTo(map);
 					map.setView([userLat, userLng], Math.max(map.getZoom(), zoom));
+					drawRouteLine([userLat, userLng]);
 					const distance = haversine(userLat, userLng, lat, lng);
 					const km = distance / 1000;
 					const kmText = new Intl.NumberFormat('vi-VN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(km);

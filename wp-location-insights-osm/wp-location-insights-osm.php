@@ -20,6 +20,7 @@ define( 'WPLI_OSM_URL', plugin_dir_url( __FILE__ ) );
 
 require_once WPLI_OSM_PATH . 'includes/rest-endpoints.php';
 require_once WPLI_OSM_PATH . 'includes/admin-settings.php';
+require_once WPLI_OSM_PATH . 'includes/locations.php';
 require_once WPLI_OSM_PATH . 'public/shortcode.php';
 
 /**
@@ -29,7 +30,7 @@ require_once WPLI_OSM_PATH . 'public/shortcode.php';
  */
 function wpli_osm_get_settings() {
 	$defaults = array(
-		'default_radius'        => 2000,
+		'default_radius'        => 5000,
 		'default_zoom'          => 15,
 		'map_height'            => 420,
 		'max_results'           => 20,

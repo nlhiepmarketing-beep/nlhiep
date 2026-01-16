@@ -16,8 +16,10 @@ WP Location Insights (OSM) renders a map + tabs + list UI similar to batdongsan.
 1. Upload the `wp-location-insights-osm` folder to `/wp-content/plugins/`.
 2. Activate the plugin through the "Plugins" menu.
 3. Go to Settings → Location Insights (OSM) to configure defaults.
-4. Add the shortcode in Flatsome UX Builder or any page builder:
+4. (Optional) Create centralized locations at Location Insights → Danh sách vị trí and use the generated shortcode.
+5. Add the shortcode in Flatsome UX Builder or any page builder:
    [wpli_location_insights title="La Pura" lat="10.915919" lng="106.713676" radius="2000" zoom="15" height="420" default_tab="school"]
+   [wpli_location_insights location_id="123"]
 
 == Frequently Asked Questions ==
 = Does it use Google Maps? =

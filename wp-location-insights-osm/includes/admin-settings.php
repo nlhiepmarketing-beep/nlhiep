@@ -122,6 +122,12 @@ function wpli_osm_render_settings_page() {
 	?>
 	<div class="wrap wpli-admin">
 		<h1><?php esc_html_e( 'WP Location Insights (OSM)', 'wp-location-insights-osm' ); ?></h1>
+		<p>
+			<?php esc_html_e( 'Quản lý danh sách vị trí tập trung tại đây:', 'wp-location-insights-osm' ); ?>
+			<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=wpli_location' ) ); ?>">
+				<?php esc_html_e( 'Danh sách vị trí', 'wp-location-insights-osm' ); ?>
+			</a>
+		</p>
 		<form method="post" action="options.php">
 			<?php settings_fields( 'wpli_osm_settings_group' ); ?>
 			<table class="form-table" role="presentation">

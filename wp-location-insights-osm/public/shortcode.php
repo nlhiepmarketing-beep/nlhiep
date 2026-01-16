@@ -15,6 +15,7 @@ function wpli_osm_render_shortcode( $atts ) {
 
 	$atts = shortcode_atts(
 		array(
+			'location_id' => '',
 			'title'       => '',
 			'lat'         => '',
 			'lng'         => '',
@@ -26,6 +27,21 @@ function wpli_osm_render_shortcode( $atts ) {
 		$atts,
 		'wpli_location_insights'
 	);
+
+	$location_id = absint( $atts['location_id'] );
+	if ( $location_id ) {
+		$post = get_post( $location_id );
+		if ( $post && 'wpli_location' === $post->post_type ) {
+			$location_meta = wpli_osm_get_location_meta( $location_id, $settings );
+			$atts['title'] = $post->post_title;
+			$atts['lat']   = $location_meta['lat'];
+			$atts['lng']   = $location_meta['lng'];
+			$atts['radius'] = $location_meta['radius'];
+			$atts['zoom']   = $location_meta['zoom'];
+			$atts['height'] = $location_meta['height'];
+			$atts['default_tab'] = $location_meta['default_tab'];
+		}
+	}
 
 	$lat = is_numeric( $atts['lat'] ) ? (float) $atts['lat'] : null;
 	$lng = is_numeric( $atts['lng'] ) ? (float) $atts['lng'] : null;
