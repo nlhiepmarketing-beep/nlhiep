@@ -1,0 +1,165 @@
+.wpli-wrapper {
+	font-family: "Helvetica Neue", Arial, sans-serif;
+	color: #111;
+}
+
+.wpli-map {
+	border-radius: 12px 12px 0 0;
+	overflow: hidden;
+	border: 1px solid #e5e5e5;
+}
+
+.wpli-panel {
+	border: 1px solid #e5e5e5;
+	border-top: none;
+	border-radius: 0 0 12px 12px;
+	background: #fff;
+	padding: 16px 20px 18px;
+}
+
+.wpli-title {
+	margin: 0 0 12px;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.wpli-tabs {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 16px;
+	overflow-x: auto;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 6px;
+	margin-bottom: 10px;
+}
+
+.wpli-tab {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 14px;
+	color: #888;
+	padding: 6px 2px 10px;
+	cursor: pointer;
+	white-space: nowrap;
+	border-bottom: 3px solid transparent;
+	transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.wpli-tab i {
+	font-size: 14px;
+}
+
+.wpli-tab.active {
+	color: #111;
+	font-weight: 600;
+}
+
+.wpli-summary {
+	color: #777;
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+
+.wpli-list {
+	max-height: 320px;
+	overflow-y: auto;
+	border-top: 1px solid #eee;
+}
+
+.wpli-list-item {
+	display: flex;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 12px 4px;
+	border-bottom: 1px solid #eee;
+	cursor: pointer;
+	transition: background 0.2s ease;
+}
+
+.wpli-list-item:hover,
+.wpli-list-item.active {
+	background: #f7f7f7;
+}
+
+.wpli-item-left {
+	flex: 1;
+	min-width: 0;
+}
+
+.wpli-item-name {
+	font-weight: 600;
+	font-size: 16px;
+	margin-bottom: 4px;
+}
+
+.wpli-item-address {
+	color: #8a8a8a;
+	font-size: 13px;
+}
+
+.wpli-item-right {
+	text-align: right;
+	min-width: 100px;
+}
+
+.wpli-item-distance {
+	font-weight: 600;
+	font-size: 14px;
+}
+
+.wpli-item-time {
+	font-size: 12px;
+	color: #777;
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	justify-content: flex-end;
+	margin-top: 4px;
+}
+
+.wpli-status {
+	font-size: 14px;
+	color: #666;
+	margin-top: 10px;
+}
+
+.wpli-marker {
+	background: var(--wpli-marker-color, #2aa8a8);
+	color: #fff;
+	border-radius: 8px;
+	width: 28px;
+	height: 28px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+	border: 2px solid #fff;
+}
+
+.wpli-marker.wpli-marker-project {
+	background: #d32f2f;
+}
+
+.wpli-marker i {
+	font-size: 14px;
+}
+
+.wpli-popup h4 {
+	margin: 0 0 4px;
+	font-size: 14px;
+}
+
+.wpli-popup p {
+	margin: 0;
+	font-size: 12px;
+	color: #666;
+}
+
+.wpli-error {
+	padding: 12px;
+	border: 1px solid #f2c1c1;
+	background: #fff2f2;
+	color: #b00020;
+	border-radius: 8px;
+}
