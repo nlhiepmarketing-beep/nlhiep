@@ -81,9 +81,9 @@ function wpli_handle_poi_request( WP_REST_Request $request ) {
 
 	$filter = wpli_get_overpass_filter( $type );
 	$query = "[out:json][timeout:25];\n(\n";
-	$query .= "node(around:" . $radius . ',' . $lat . ',' . $lng . ')' . $filter . ';\n";
-	$query .= "way(around:" . $radius . ',' . $lat . ',' . $lng . ')' . $filter . ';\n";
-	$query .= "relation(around:" . $radius . ',' . $lat . ',' . $lng . ')' . $filter . ';\n";
+	$query .= "node(around:" . $radius . ',' . $lat . ',' . $lng . ')' . $filter . ";\n";
+	$query .= "way(around:" . $radius . ',' . $lat . ',' . $lng . ')' . $filter . ";\n";
+	$query .= "relation(around:" . $radius . ',' . $lat . ',' . $lng . ')' . $filter . ";\n";
 	$query .= ");\nout center tags;";
 
 	$response = wp_remote_post(
