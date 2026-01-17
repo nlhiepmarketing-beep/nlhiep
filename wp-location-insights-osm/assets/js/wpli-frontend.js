@@ -1,5 +1,6 @@
 (function () {
 	if (typeof window.wpliSettings === 'undefined') {
+		console.error('WPLI: Missing wpliSettings.');
 		return;
 	}
 
@@ -52,6 +53,19 @@
 		});
 	}
 
+	function showInlineError(container, message) {
+		const error = container.querySelector('.wpli-error');
+		if (error) {
+			error.textContent = message;
+			error.style.display = 'block';
+			return;
+		}
+		const errorEl = document.createElement('div');
+		errorEl.className = 'wpli-error';
+		errorEl.textContent = message;
+		container.appendChild(errorEl);
+	}
+
 	function WPLIInstance(container) {
 		this.container = container;
 		this.mapElement = container.querySelector('.wpli-map');
@@ -78,6 +92,16 @@
 	}
 
 	WPLIInstance.prototype.init = function () {
+		if (typeof window.L === 'undefined' || typeof window.L.map === 'undefined') {
+			console.error('WPLI: Leaflet is not available. Make sure Leaflet assets are loaded.');
+			showInlineError(this.container, 'Không thể tải bản đồ vì thiếu Leaflet. Vui lòng kiểm tra cài đặt tải thư viện.');
+			return;
+		}
+		if (isNaN(this.lat) || isNaN(this.lng)) {
+			console.error('WPLI: Invalid coordinates for widget.');
+			showInlineError(this.container, 'Thiếu toạ độ hợp lệ cho bản đồ.');
+			return;
+		}
 		this.renderTabs();
 		this.initMap();
 		this.loadTab(this.activeTab);
@@ -113,6 +137,11 @@
 			zoomControl: true,
 			scrollWheelZoom: false
 		}).setView([this.lat, this.lng], this.zoom);
+
+		const loading = this.mapElement.querySelector('.wpli-loading');
+		if (loading) {
+			loading.remove();
+		}
 
 		this.tileLayer = L.tileLayer(SETTINGS.tileUrl, {
 			attribution: SETTINGS.tileAttribution,
@@ -216,7 +245,8 @@
 				this.renderPoi(type, data.items || []);
 			})
 			.catch(() => {
-				this.renderMessage('Không thể tải dữ liệu. Vui lòng thử lại.');
+				this.summaryElement.textContent = 'Không thể tải dữ liệu.';
+				this.renderMessage('Không thể tải dữ liệu từ máy chủ. Vui lòng thử lại.');
 			});
 	};
 
@@ -312,9 +342,18 @@
 		);
 	};
 
-	document.addEventListener('DOMContentLoaded', () => {
-		document.querySelectorAll('.wpli').forEach((container) => {
+	function initAll() {
+		document.querySelectorAll('.wpli[data-wpli-id]').forEach((container) => {
+			if (container.dataset.wpliReady) {
+				return;
+			}
+			container.dataset.wpliReady = '1';
 			instances.push(new WPLIInstance(container));
 		});
-	});
+	}
+
+	window.wpliInitAll = initAll;
+
+	document.addEventListener('DOMContentLoaded', initAll);
+	window.addEventListener('load', initAll);
 })();

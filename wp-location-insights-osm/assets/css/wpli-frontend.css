@@ -130,6 +130,12 @@
 	font-size: 12px;
 }
 
+.wpli .wpli-error {
+	margin-top: 12px;
+	color: #b00020;
+	font-size: 14px;
+}
+
 .wpli .wpli-loading,
 .wpli .wpli-message {
 	padding: 12px 0;

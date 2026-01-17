@@ -3,7 +3,7 @@ Contributors: openai
 Tags: maps, leaflet, osm, overpass, location
 Requires at least: 5.8
 Tested up to: 6.5
-Stable tag: 1.1.0
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,3 +35,11 @@ Plugin sử dụng OpenStreetMap tiles và Overpass API. Vui lòng giữ attribu
 == Caching ==
 
 Dữ liệu POI được cache bằng transients. Có thể chỉnh TTL trong Cài đặt để giảm tải cho Overpass API.
+
+== Troubleshooting ==
+
+Nếu bản đồ trắng hoặc không hiển thị:
+1. Kiểm tra Console để xem log lỗi từ plugin.
+2. Bật “Luôn tải asset ở frontend” trong Cài đặt để đảm bảo script được enqueue.
+3. Đảm bảo Leaflet được tải (không bị tắt trong Cài đặt).
+4. Kiểm tra phản hồi REST API /wp-json/wpli/v1/poi.
