@@ -1,0 +1,186 @@
+.wpli {
+	--wpli-accent: #d32f2f;
+	--wpli-marker: #2aa8a8;
+	font-family: inherit;
+	color: #1f1f1f;
+}
+
+.wpli * {
+	box-sizing: border-box;
+}
+
+.wpli .wpli-title {
+	font-size: 20px;
+	margin: 0 0 12px;
+}
+
+.wpli .wpli-map {
+	width: 100%;
+	border-radius: 10px 10px 0 0;
+	overflow: hidden;
+	background: #f2f2f2;
+	position: relative;
+}
+
+.wpli .wpli-panel {
+	background: #fff;
+	border-radius: 0 0 10px 10px;
+	border: 1px solid #ececec;
+	border-top: none;
+	padding: 12px 16px 16px;
+}
+
+.wpli .wpli-tabs {
+	display: flex;
+	gap: 18px;
+	align-items: center;
+	flex-wrap: nowrap;
+	overflow-x: auto;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #eee;
+}
+
+.wpli .wpli-tab {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 14px;
+	color: #8a8a8a;
+	cursor: pointer;
+	padding-bottom: 6px;
+	white-space: nowrap;
+	position: relative;
+}
+
+.wpli .wpli-tab.active {
+	color: #111;
+	font-weight: 600;
+}
+
+.wpli .wpli-tab.active::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: -9px;
+	width: 100%;
+	height: 3px;
+	background: var(--wpli-accent);
+	border-radius: 3px;
+}
+
+.wpli .wpli-summary {
+	margin: 12px 0 8px;
+	color: #7a7a7a;
+	font-size: 14px;
+}
+
+.wpli .wpli-list {
+	max-height: 260px;
+	overflow-y: auto;
+	border-top: 1px solid #f1f1f1;
+}
+
+.wpli .wpli-item {
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 12px 0;
+	border-bottom: 1px solid #f2f2f2;
+	cursor: pointer;
+}
+
+.wpli .wpli-item:last-child {
+	border-bottom: none;
+}
+
+.wpli .wpli-item.active {
+	background: #fafafa;
+}
+
+.wpli .wpli-item-name {
+	font-weight: 600;
+	font-size: 15px;
+	margin-bottom: 4px;
+}
+
+.wpli .wpli-item-address {
+	font-size: 13px;
+	color: #8a8a8a;
+}
+
+.wpli .wpli-item-meta {
+	text-align: right;
+	font-size: 14px;
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+.wpli .wpli-item-time {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 12px;
+	color: #6f6f6f;
+	font-weight: 500;
+	margin-top: 4px;
+	justify-content: flex-end;
+}
+
+.wpli .wpli-item-time i {
+	font-size: 12px;
+}
+
+.wpli .wpli-loading,
+.wpli .wpli-message {
+	padding: 12px 0;
+	font-size: 14px;
+	color: #777;
+}
+
+.wpli .wpli-map-message {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	background: rgba(0, 0, 0, 0.6);
+	color: #fff;
+	padding: 6px 10px;
+	border-radius: 6px;
+	font-size: 12px;
+	z-index: 1000;
+}
+
+.wpli .leaflet-container img,
+.wpli .leaflet-container .leaflet-tile,
+.wpli .leaflet-container .leaflet-marker-icon,
+.wpli .leaflet-container .leaflet-marker-shadow {
+	max-width: none !important;
+	max-height: none !important;
+	width: auto !important;
+	height: auto !important;
+}
+
+.wpli .wpli-marker {
+	background: var(--wpli-marker);
+	border-radius: 8px;
+	width: 30px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+	border: 2px solid #fff;
+}
+
+.wpli .wpli-marker-project {
+	background: #d32f2f;
+	border-radius: 50%;
+	width: 34px;
+	height: 34px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	border: 2px solid #fff;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
