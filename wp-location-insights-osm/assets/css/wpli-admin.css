@@ -1,0 +1,17 @@
+.wpli-admin-map {
+	width: 100%;
+	height: 260px;
+	border: 1px solid #e2e2e2;
+	border-radius: 8px;
+	margin-top: 10px;
+}
+
+.wpli-shortcode-generator label {
+	display: inline-block;
+	min-width: 140px;
+}
+
+.wpli-shortcode-input {
+	width: 220px;
+	margin-right: 6px;
+}
